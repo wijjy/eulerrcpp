@@ -1,0 +1,59 @@
+---
+title: "Project Euler 1"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Project 3
+
+The prime factors of 13195 are 5, 7, 13 and 29.
+
+What is the largest prime factor of the number 600851475143 ?
+
+```{Rcpp}
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+Rcpp::NumericVector PrimeFactors(unsigned long number) {
+  std::vector<unsigned long> factors;
+
+  while (number%2==0) {
+        number /= 2;
+        factors.push_back(2);
+  }
+  
+    unsigned long divisor = 3;
+    double maxprime = sqrt(number);
+    while (divisor <= maxprime) {
+        if (number%divisor == 0) {
+            number = number/divisor;
+            factors.push_back(divisor);
+            maxprime = sqrt(number);
+                Rprintf("%u %u %g\n", number, divisor, maxprime);
+        } else {
+            divisor += 2;
+        }
+    }
+    Rprintf("%u %u %g\n", number, divisor, maxprime);
+    factors.push_back(number);
+    
+    Rcpp::NumericVector a(factors.size());
+    for (size_t i=0;i<factors.size();i++)
+      a(i)=static_cast<double>(factors[i]);
+
+    return a;
+}
+
+```
+
+
+```{r}
+a <- PrimeFactors(600851475143)
+print(a)
+prod(a)
+PrimeFactors(688543)
+```
