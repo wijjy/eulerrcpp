@@ -18,27 +18,28 @@ What is the largest prime factor of the number 600851475143 ?
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-Rcpp::NumericVector PrimeFactors(unsigned long number) {
-  std::vector<unsigned long> factors;
-
+Rcpp::NumericVector PrimeFactors(double numb) {
+  unsigned long long number = static_cast<unsigned long long>(numb);
+  std::vector<unsigned long long> factors;
+  Rprintf("%d %d %d\n", sizeof(unsigned long), sizeof(unsigned long long), sizeof(double));
   while (number%2==0) {
         number /= 2;
         factors.push_back(2);
   }
   
-    unsigned long divisor = 3;
+    unsigned long long divisor = 3ul;
+   //  Rprintf("%lld\n", number);
+
     double maxprime = sqrt(number);
     while (divisor <= maxprime) {
         if (number%divisor == 0) {
             number = number/divisor;
             factors.push_back(divisor);
             maxprime = sqrt(number);
-                Rprintf("%u %u %g\n", number, divisor, maxprime);
         } else {
-            divisor += 2;
+            divisor += 2ul;
         }
     }
-    Rprintf("%u %u %g\n", number, divisor, maxprime);
     factors.push_back(number);
     
     Rcpp::NumericVector a(factors.size());
@@ -52,8 +53,6 @@ Rcpp::NumericVector PrimeFactors(unsigned long number) {
 
 
 ```{r}
-a <- PrimeFactors(600851475143)
+system.time(a <- PrimeFactors(600851475143))
 print(a)
-prod(a)
-PrimeFactors(688543)
 ```
