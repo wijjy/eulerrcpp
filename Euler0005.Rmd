@@ -1,0 +1,32 @@
+---
+title: "Project Euler 5"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+username: wijjycpp
+
+## Project 5
+
+2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+
+What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+
+
+###
+
+I would say this is 
+
+$$20 \times 19 \times 3 \times 3 \times 17 \times 2 \times 2 \times 7 \times 13 \times 11 $$
+
+I don't know how you would use code to do it except by the stupidest of brute force.  I suppose you could collect up the prime factors of all the numbers up and including 20, and then find out the maximum number of each of them needed.
+
+
+
+```{r}
+20*19*3*3*17*2*2*7*13*11
+
+```

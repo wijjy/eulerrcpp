@@ -1,5 +1,5 @@
 ---
-title: "Project Euler 1"
+title: "Project Euler 5"
 output: github_document
 ---
 
@@ -7,11 +7,13 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Project 1
+username: wijjycpp
 
-If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+## Project 5
 
-Find the sum of all the multiples of 3 or 5 below 1000.
+2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+
+What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
 ```{Rcpp}
 #include <Rcpp.h>
