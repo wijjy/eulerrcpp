@@ -15,17 +15,18 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 ### Notes
 
-The largest is going to have six digits.  So will look like $ghiihg$
+The largest is going to have six digits.  So will look like $$ghiihg$$
 
-$abc \times def = ghiihg$
+$$abc \times def = ghiihg$$
 
 Hence
-$cf \mod 10 = g$
+$$cf \mod 10 = g$$
 
 And there will be other relationships, but these are more complicated.
 
-Easier may be to count down the palindromic numbers starting from $999999$, and then trying to factorise.  When it 
-can be   factored as the product of two 3-digit numbers then bingo.
+Easier may be to count down the palindromic numbers starting from $999999$, 
+and then trying to factorise.  When it can be factored as the product of 
+two 3-digit numbers then bingo.
 
 
 
@@ -51,8 +52,8 @@ bool IsPalindrome( long  n) {
 // [[Rcpp::export]]
 int largestpalindrome(int min, int max) {
   int currmax=0;
-  for (int i=max; i>=min;i--) {
-    for (int i2=i;i2>=min;i2--) {
+  for (int i=max; i>=min; i--) {
+    for (int i2=i; i2>=min; i2--) {
       long test=i*i2;
 
       if (IsPalindrome(test)) {
@@ -70,7 +71,7 @@ int largestpalindrome(int min, int max) {
 
 ```{r}
 system.time(
-a <- largestpalindrome(501, 999)
+    a <- largestpalindrome(501, 999)
 )
 print(a)
 ```
